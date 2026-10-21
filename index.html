@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b3c4a">
+<title>检验项目手册 V3.0</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="检验项目手册 V3.0 在线查询：按项目或组合查看收费、标本、采血管、报告时限与责任组室。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b6b7f'/%3E%3Cpath d='M32 14v36M14 32h36' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#/" aria-label="返回首页">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="22" height="22"><path d="M16 6v20M6 16h20" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text">
+        <strong>检验项目手册</strong>
+        <small id="brandSub">V3.0</small>
+      </span>
+    </a>
+
+    <div class="searchbox">
+      <svg class="icon-search" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="q" type="search" autocomplete="off" spellcheck="false"
+             placeholder="搜索项目 / 组合 / 子项 / 分类 / 组室" aria-label="搜索">
+      <button id="clearQ" class="icon-btn" type="button" hidden aria-label="清空搜索">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <!-- 列表视图 -->
+  <section id="listView">
+    <div class="toolbar">
+      <div class="segmented" role="tablist" aria-label="类型筛选">
+        <button class="seg is-active" data-kind="all" role="tab" aria-selected="true">全部</button>
+        <button class="seg" data-kind="组合" role="tab" aria-selected="false">组合</button>
+        <button class="seg" data-kind="单项" role="tab" aria-selected="false">单项</button>
+      </div>
+
+      <label class="field">
+        <span>分类</span>
+        <select id="fCategory"><option value="">全部</option></select>
+      </label>
+
+      <label class="field">
+        <span>组室</span>
+        <select id="fLab"><option value="">全部</option></select>
+      </label>
+
+      <label class="field">
+        <span>排序</span>
+        <select id="fSort">
+          <option value="default">手册顺序</option>
+          <option value="name">名称 A→Z</option>
+          <option value="priceAsc">价格低→高</option>
+          <option value="priceDesc">价格高→低</option>
+        </select>
+      </label>
+
+      <button id="reset" class="link-btn" type="button">重置</button>
+    </div>
+
+    <p class="result-meta" id="resultMeta" aria-live="polite"></p>
+    <div class="cards" id="cards"></div>
+    <div class="empty" id="empty" hidden>
+      <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <p>没有匹配的项目</p>
+      <button class="link-btn" id="reset2" type="button">清除筛选条件</button>
+    </div>
+  </section>
+
+  <!-- 详情视图 -->
+  <section id="detailView" hidden></section>
+</main>
+
+<footer class="footer wrap">
+  <p>
+    数据来源：<span id="footSource">《检验项目手册》V3.0.xlsx</span>
+    · 数据日期 <span id="footDate">—</span>
+    · 仅供临床开单与检验沟通参考，收费以医院实际收费系统为准
+  </p>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
